@@ -1,0 +1,9 @@
+<h1>List of Current User Houses</h1>
+
+<ul>
+  <% @houses.each.with_index(1) do |h_obj, idx| %>
+    <li><%= idx%>. Location: <%= link_to h_obj.location, house_path(h_obj) %> 
+    <br/> Owner: <%= h_obj.user.email %> </li>
+    <br/>
+  <% end %>
+</ul>

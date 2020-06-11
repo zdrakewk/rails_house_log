@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get '/users/new'
+  # get '/signup'
   # get 'users/create'
-  post '/users', to: 'users#create', as: 'create_user'
+  post '/users' => 'users#create' #, as: 'create_user'
   get '/users/:id', to: 'users#show'
   
   resources :houses #,only: || except: [:index, :show]
