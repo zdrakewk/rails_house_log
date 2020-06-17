@@ -7,6 +7,9 @@ class UsersController < ApplicationController
 
     if @new_user.save # @new_user.valid
       # add session info
+
+      # _path #=> '/houses'
+      # _url #=> 'http://localhost:3000/houses'
       redirect_to houses_path
     else
       render :new

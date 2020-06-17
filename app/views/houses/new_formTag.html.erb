@@ -1,0 +1,10 @@
+<h1>Add Your House here</h1>
+<%= form_tag(houses_path) do %>
+  <%#= form_tag('/users')%>
+  Location: <%= text_field_tag 'house[location]', nil, {class: 'test_class'} %><br/>
+  Size: <%= number_field_tag 'house[size]'%><br/>
+  Select the owner: <%= select_tag 'house[user_id]', options_from_collection_for_select(@all_users, :id, :email), include_blank: true %><br/>
+  <%= hidden_field_tag 'house[secret]'%>
+  <%= submit_tag("Create House")%>
+<% end %>
+
