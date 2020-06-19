@@ -1,1 +1,6 @@
-<%= @house.location %>
+House Location: <%= @house.location %><br/>
+House size: <%= @house.size %><br/>
+Owner: <%= @house.user.email %><br/>
+
+<%= link_to 'Edit', edit_house_path(@house) %> | 
+<%= link_to 'Delete', house_path(@house), method: :delete %>
