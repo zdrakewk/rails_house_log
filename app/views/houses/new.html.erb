@@ -22,10 +22,10 @@
 
   Size: <%= f.number_field :size, required: true %><br/>
 
- <!-- Select the owner: <%= f.select :user_id, options_from_collection_for_select(@all_users, :id, :email), include_blank: true %><br/> -->
+ <!-- Select the owner: <%#= f.select :user_id, options_from_collection_for_select(@all_users, :id, :email), include_blank: true %><br/> -->
 
   
-  Select the owner: <%= f.select :user_id, @all_users.collect {|u| [u.email, u.id] }, {prompt: 'Select'}%><br/>
+  <!-- Select the owner: <%#= f.select :user_id, @all_users.collect {|u| [u.email, u.id] }, {prompt: 'Select'}%><br/> -->
 
   <%= f.submit("Create House")%>
 <% end %>
