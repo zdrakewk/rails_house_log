@@ -17,6 +17,8 @@
 
 <h1>Add Your House here</h1>
 <%= form_for(@house) do |f| %>
+<!-- to submit form to using nested create route -->
+<%#= form_for(@house, url: user_houses_path(@house.user)) do |f| %>
   <%#= form_tag('/users')%>
   Location: <%= f.text_field :location, {class: 'test_class'} %><br/>
 
