@@ -23,7 +23,15 @@
   Location: <%= f.text_field :location, {class: 'test_class'} %><br/>
 
   Size: <%= f.number_field :size, required: true %><br/>
-
+  <h4> Add Room Info here: </h4>
+  <%= f.fields_for :rooms do |room_form| %>
+    <%= room_form.label :name %>
+    <%= room_form.text_field :name %> <br/>
+    <%= room_form.label :theme %>
+    <%= room_form.text_field :theme %> <br/>
+    <%= room_form.label "in_use" %>
+    <%= room_form.check_box :use %> <br/><br/>
+  <% end %>
  <!-- Select the owner: <%#= f.select :user_id, options_from_collection_for_select(@all_users, :id, :email), include_blank: true %><br/> -->
 
   

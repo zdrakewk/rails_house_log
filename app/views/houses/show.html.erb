@@ -1,5 +1,11 @@
 House Location: <%= @house.location %><br/>
 House size: <%= @house.size %><br/>
+Current Rooms:
+<ol>
+  <% @house.rooms.each do |room| %>
+  <li><%= room.name %></li>
+  <% end %>
+</ol>
 Owner: <%= @house.user.email %><br/>
 
 <%= link_to 'Edit', edit_house_path(@house) %> | 

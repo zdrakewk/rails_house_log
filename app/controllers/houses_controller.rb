@@ -33,12 +33,19 @@ before_action :get_house, only: [:show, :edit, :update, :destroy]
       @house = User.find_by_id(params[:user_id]).houses.build
     else
       @house = House.new
+      @house.rooms.build
+      @house.rooms.build
+      # @house.rooms.build
+      # @house.rooms.build
+      # @house.rooms.build
+      # @rooms = [Room.new, Room.new]
     end
     # @all_users = User.all
   end
 
   def create
     @new_house = current_user.houses.build(house_params)
+    # binding.pry
 
     if @new_house.save
       redirect_to house_path(@new_house)
@@ -77,7 +84,7 @@ before_action :get_house, only: [:show, :edit, :update, :destroy]
       # auth_token: 123232,
       # house: {location: 'str', size: #, user_id: #, house_type: ''}
       # }
-      params.require(:house).permit(:location, :size)
+      params.require(:house).permit(:location, :size, rooms_attributes: [:name, :theme, :use])
     end
 
     def get_house # finding house in table from params
