@@ -1,0 +1,22 @@
+<h1> Add a Room Here </h1>
+
+<%= form_for @room do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %> <br/>
+  <%= f.label :theme %>
+  <%= f.text_field :theme %> <br/>
+  <%= f.label "in_use" %>
+  <%= f.check_box :use %> <br/>
+  <p>Add House Info Below</p>
+  <%= f.fields_for :house do |h_form| %>
+    Location: <%= h_form.text_field :location%><br/>
+   Size:  <%= h_form.number_field :size%><br/>
+   <%= h_form.hidden_field :user_id %>
+  <% end %>
+  </p> Select a House </p>
+                      <!--  #params key  #el 4 iteration #display 2 user #parmas val -->
+  <%= f.collection_select :house_id, @houses, :id, :location, prompt: true %><br/><br/>
+<%#= f.collection_check_boxes :house_id, @houses, :id, :location, prompt: true %>
+<%= f.submit %>
+  
+<% end %>

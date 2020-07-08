@@ -28,18 +28,23 @@ before_action :get_house, only: [:show, :edit, :update, :destroy]
 
   def new
     # binding.pry
-    if params.include?('user_id')
-      @house = User.find_by_id(params[:user_id]).houses.new
-      @house = User.find_by_id(params[:user_id]).houses.build
-    else
-      @house = House.new
-      @house.rooms.build
-      @house.rooms.build
+    @house = House.new
+    @house.rooms.build
+    @house.rooms.build
+
+    # @rooms = Room.new
+    # if params.include?('user_id')
+    #   # @house = User.find_by_id(params[:user_id]).houses.new
+    #   @house = User.find_by_id(params[:user_id]).houses.build
+    # else
+      # @house = House.new
+      # @house.rooms.build
+      # @house.rooms.build
       # @house.rooms.build
       # @house.rooms.build
       # @house.rooms.build
       # @rooms = [Room.new, Room.new]
-    end
+    # end
     # @all_users = User.all
   end
 
@@ -84,7 +89,19 @@ before_action :get_house, only: [:show, :edit, :update, :destroy]
       # auth_token: 123232,
       # house: {location: 'str', size: #, user_id: #, house_type: ''}
       # }
-      params.require(:house).permit(:location, :size, rooms_attributes: [:name, :theme, :use])
+      params.require(:house).permit(
+        :location, 
+        :size, 
+        rooms_attributes: [
+          :name, 
+          :theme, 
+          :use
+        ],
+        third_hash: [
+          :attr1,
+          :attr2
+        ]
+      )
     end
 
     def get_house # finding house in table from params
