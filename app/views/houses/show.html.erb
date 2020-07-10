@@ -3,10 +3,9 @@ House size: <%= @house.size %><br/>
 Current Rooms:
 <ol>
   <% @house.rooms.each do |room| %>
-  <li><%= room.name %></li>
-  <% end %>
+   <%= render 'rooms/room_list', {room_obj: room}%><br/>
 </ol>
 Owner: <%= @house.user.email %><br/>
-
+<% end %>
 <%= link_to 'Edit', edit_house_path(@house) %> | 
 <%= link_to 'Delete', house_path(@house), method: :delete %>

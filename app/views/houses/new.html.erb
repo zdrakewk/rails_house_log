@@ -1,28 +1,13 @@
 <% @house = @house || @new_house %>
 <% if @house.errors.any? %>
-  <div id="error_explanation">
-    <h2>
-      <%= pluralize(@house.errors.count, "error") %>
-      prohibited this house from being saved:
-    </h2>
- 
-    <ul>
-      <% @house.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %> 
-    </ul>
-  </div>
+  <%= render 'layouts/error', {obj: @house} %>
 <% end %>
 
 
 <h1>Add Your House here</h1>
 <%= form_for(@house) do |f| %>
-<!-- to submit form to using nested create route -->
-<%#= form_for(@house, url: user_houses_path(@house.user)) do |f| %>
-  <%#= form_tag('/users')%>
-  Location: <%= f.text_field :location, {class: 'test_class'} %><br/>
-
-  Size: <%= f.number_field :size, required: true %><br/>
+  <%= render 'form', {form_field: f} %>
+  
   <h4> Add Room Info here: </h4>
   <%= f.fields_for :rooms do |room_form| %>
     <%= room_form.label :name %>
@@ -32,9 +17,6 @@
     <%= room_form.label "in_use" %>
     <%= room_form.check_box :use %> <br/><br/>
   <% end %>
- <!-- Select the owner: <%#= f.select :user_id, options_from_collection_for_select(@all_users, :id, :email), include_blank: true %><br/> -->
-  <!-- Select the owner: <%#= f.select :user_id, @all_users.collect {|u| [u.email, u.id] }, {prompt: 'Select'}%><br/> -->
-
-  <%= f.submit("Create House")%>
+  <%= f.submit %>
 <% end %>
 

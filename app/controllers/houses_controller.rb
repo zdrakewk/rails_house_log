@@ -20,8 +20,8 @@ before_action :get_house, only: [:show, :edit, :update, :destroy]
     if params.include?('user_id') #|| !!params[:user_id] || params[:user_id]
       # current_user = user
       # @houses = user.houses
-      # @houses = current_user.houses
-      @house = User.find_by_id(params[:user_id]).houses.find_by_id(params[:id])
+      @houses = current_user.houses
+      # @house = User.find_by_id(params[:user_id]).houses.find_by_id(params[:id])
     end
   # @house = get_house
   end
@@ -61,8 +61,12 @@ before_action :get_house, only: [:show, :edit, :update, :destroy]
   end
 
   def edit
-    # @house = get_house
-    @all_users = User.all
+    if current_user.houses.include?(@house) 
+      @all_users = User.all
+      render :edit
+    else
+      redirect_to houses_path
+    end
   end
 
   def update
@@ -78,8 +82,7 @@ before_action :get_house, only: [:show, :edit, :update, :destroy]
   end
 
   def destroy
-    # @house = get_house
-    @house.destroy
+    @house.destroy if current_user.houses.include?(@house) 
     redirect_to houses_path
   end
 

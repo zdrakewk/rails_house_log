@@ -1,0 +1,7 @@
+<h1>List of Rooms Houses</h1>
+
+<ol>
+  <% @rooms.each do |r_obj| %>
+   <%= render 'room_list', {room_obj: r_obj}%><br/>
+  <% end %>
+</ol>

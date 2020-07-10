@@ -5,6 +5,16 @@ class House < ApplicationRecord
   validates :location, :size, presence: true
   # accepts_nested_attributes_for :rooms
 
+  # room_params = {
+  #   0: {:name, :theme, :use},
+  #   1: {:name, :theme, :use}
+  # }
+
+  # room_params.values = [
+  #   {:name, :theme, :use}.
+  #   {:name, :theme, :use}
+  # ]
+
   def rooms_attributes=(room_params)
     room_params.values.each do |room_attrs| # {"name"=>"Main", "theme"=>"Choas", "use"=>"1"}
       unless room_attrs.values.any?(&:empty?)
