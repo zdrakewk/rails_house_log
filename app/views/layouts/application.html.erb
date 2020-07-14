@@ -11,10 +11,12 @@
 
   <body>
     <% if session.has_key?(:user_id) %>
+      <b>Welcome <%= current_user.display_userName || 'Person' %></b>
       <%= link_to 'LogOut', logout_path, method: :delete %>
       <%= link_to 'Add House', new_house_path %><br/><br/><br/>
     <% else %>
       <%= link_to 'LogIn', login_path%>
+      <%= link_to 'LogIn with GitHub', github_path %>
       <%= link_to 'SignUp', new_user_path %><br/><br/><br/>
 
     <% end%>
